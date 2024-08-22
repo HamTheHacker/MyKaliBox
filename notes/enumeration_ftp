@@ -1,0 +1,60 @@
+
+
+#################################################################################################
+
+	1) ENUMERATE VERSION
+	
+	nmap -Pn -sC -sV -p21 <ip>
+	nmap -Pn --script=banner -sV -p21 <ip>
+	nmap -Pn --script=ftp-banners -p21 <ip>
+	nmap -Pn --script=ftp-syst -p21 <ip>
+
+#################################################################################################
+
+	2) ENUMERATE USERS/USERNAMES
+	+-------------------+
+	| Find Usernames.   |
+	+-------------------+
+
+	nmap -Pn --script=ftp-anon -p21 <ip>
+	Try:
+		ftp <ip>
+		username: anonymous
+		password:
+
+	nmap -Pn --script=ftp-user -p21 <ip>
+
+#################################################################################################
+
+	3) CREDENTIALS STEALING
+	+-------------------+
+	| Crack passwords.  |
+	+-------------------+
+
+	hydra -l <username> -P <Pass-File> <ip> ftp -t4
+
+#################################################################################################
+	
+	4) LOGIN FTP
+	+-----------------------------------------------+
+	| Login to ftp					|
+	| Either anonymously or with legit credentials	|
+	+-----------------------------------------------+
+
+	ftp <ip>
+	Username: <username>
+	Password: <password>
+
+#################################################################################################
+
+	5) UPLOAD AND DOWNLOAD FILES
+	+--------------------------------------------------------+
+	| Upload and download files				 |
+	| Possibly upload payloads like asp payloads for example |
+	+--------------------------------------------------------+
+	
+	put <file>
+	get <file>
+
+#################################################################################################
+

@@ -1,0 +1,23 @@
+
+######################################################################
+
+Tools:
+
+Terminal: Konsole
+
+Go <----- Package Installation
+
+Linpeas <---- PrivEsc Enumeration Linux
+Winpeas <---- PrivEsc Enumeration Windows
+Akagi <------ PrivEsc
+PowerSploit <- PrivEsc Local Windows
+MacroPack.exe <- Macros For Windows
+Hash Identifier <--- Hash Identifier
+Impacket <------ Useful Scrips
+BloodHound <----- AD Enumeration
+Kerbrute <---- Password Spraying AD
+
+
+#####################################################################
+
+

