@@ -2293,3 +2293,4 @@ function Invoke-AllChecks {
         "[*] Report written to '$HtmlReportFile' `n"
     }
 }
+Invoke-AllChecks
