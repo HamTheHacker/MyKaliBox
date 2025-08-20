@@ -12,21 +12,19 @@ cd ~
 mkdir kali
 cd kali
 
-git clone https://github.com/HamTheHacker/MyKaliBox/tree/main/krakin
+git clone https://github.com/HamTheHacker/MyKaliBox.git
 mkdir transfer
 
 cd transfer
-
 mkdir powerup
+
 cd powerup
-git clone https://github.com/HamTheHacker/MyKaliBox/tree/main/tools/powersploit/common_scripts
-mv common_scripts/* .
+mv ../../MyKaliBox/tools/powersploit/common_scripts/* .
 rm -rf common_scripts
 cd ..
 
-git clone https://github.com/HamTheHacker/MyKaliBox/tree/main/tools
-rm -rf powersploit 
-rm -rf others
+mv ../MyKaliBox/tools/* .
+rm -rf ../MyKaliBox/tools/others
 
 mkdir dirtycow
 cd dirtycow
@@ -36,15 +34,14 @@ rm -rf 42f8629577db95782d5e4f609f437a54
 gcc -pthread c0w.c -o cow-compiled -lcrypt
 cd ..
 
-git clone https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS10-059
+
 
 mkdir windows_suggester
 cd windows_suggester
-git clone https://github.com/AonCyberLabs/Windows-Exploit-Suggester/blob/master/windows-exploit-suggester.py
-cd ..
-
-cd linpeas
-git clone https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASps1/winPEAS.ps1
+git clone https://github.com/AonCyberLabs/Windows-Exploit-Suggester.git
+mv Windows-Exploit-Suggester/windows-exploit-suggester.py .
+./windows-exploit-suggester.py --update
+rm -rf Windows-Exploit-Suggester
 cd ..
 
 mkdir print_nightmare
@@ -60,8 +57,8 @@ git clone https://github.com/pimps/CVE-2018-7600
 mv CVE-2018-7600/drupa7-CVE-2018-7600.py .
 mv drupa7-CVE-2018-7600.py drupal7.py
 rm -rf CVE-2018-7600
-pip install requests
-pip install bs4
+pip3 install requests
+pip3 install bs4
 cd ..
 
 cd ..
@@ -69,10 +66,14 @@ cd ..
 mkdir workspace
 cd workspace
 mkdir findings 
-https://github.com/HamTheHacker/MyKaliBox.git
-rm -rf krakin notes tools workspace # to only keep script
-mv script/* .
-rm -rf script
+
+mv ../MyKaliBox/script/* .
+chmod +x *
 cd ..
 
+mv MyKaliBox/krakin .
+rm -rf MyKaliBox
+
+rm -rf transfer/others
+Rm -rf transfer/powersploit
 
