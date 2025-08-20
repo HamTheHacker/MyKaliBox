@@ -2733,3 +2733,5 @@ Function Main
 
 Main
 }
+
+Invoke-AllChecks
