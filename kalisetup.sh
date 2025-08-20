@@ -75,5 +75,5 @@ mv MyKaliBox/krakin .
 rm -rf MyKaliBox
 
 rm -rf transfer/others
-Rm -rf transfer/powersploit
+rm -rf transfer/powersploit
 
