@@ -32,7 +32,7 @@ cd dirtycow
 git clone https://gist.github.com/KrE80r/42f8629577db95782d5e4f609f437a54
 mv 42f8629577db95782d5e4f609f437a54/* .
 rm -rf 42f8629577db95782d5e4f609f437a54
-gcc -pthread c0w.c -o cow-compiled -lcrypt
+gcc -pthread c0w.c -o compiled_cow -lcrypt
 cd ..
 
 
@@ -55,6 +55,11 @@ cd ..
 cd ld_preload_privesc
 gcc -m32 -fPIC -shared -o compiled_32bit_ld_preload.so ld_preload.c -nostartfiles
 gcc -fPIC -shared -o compiled_64bit_ld_preload.so ld_preload.c -nostartfiles
+cd ..
+
+git clone https://github.com/saleemrashid/sudo-cve-2019-18634.git
+cd sudo-cve-2019-18634
+gcc -o exploit.c compiled_exploit
 cd ..
 
 mkdir drupal7
