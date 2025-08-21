@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo apt update
+sudo apt install gcc build-essential libc6-dev libcrypt-dev gcc-multilib -y
 sudo apt install kali-tools-web kali-tools-top10 kali-tools-wireless kali-tools-everything -y
 sudo apt install impacket-scripts ffuf wget -y
 sudo apt install ruby ruby-dev -y
@@ -49,6 +50,11 @@ cd print_nightmare
 git clone https://github.com/nemo-wq/PrintNightmare-CVE-2021-34527
 mv PrintNightmare-CVE-2021-34527/CVE-2021-34527.py .
 rm -rf PrintNightmare-CVE-2021-34527
+cd ..
+
+cd ld_preload_privesc
+gcc -m32 -fPIC -shared -o compiled_32bit_ld_preload.so ld_preload.c -nostartfiles
+gcc -fPIC -shared -o compiled_64bit_ld_preload.so ld_preload.c -nostartfiles
 cd ..
 
 mkdir drupal7
