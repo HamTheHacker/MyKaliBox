@@ -74,7 +74,7 @@ cd workspace
 mkdir findings 
 
 mv ../MyKaliBox/script/* .
-chmod +x *
+sudo chmod +x *
 cd ..
 
 mv MyKaliBox/krakin .
