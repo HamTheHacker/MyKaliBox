@@ -58,7 +58,8 @@ gcc -fPIC -shared -o compiled_64bit_ld_preload.so ld_preload.c -nostartfiles
 cd ..
 
 git clone https://github.com/saleemrashid/sudo-cve-2019-18634.git
-cd sudo-cve-2019-18634
+mv sudo-cve-2019-18634 sudoPrivEsc-cve-2019-18634
+cd sudoPrivEsc-cve-2019-18634
 gcc -o exploit.c compiled_exploit
 cd ..
 
@@ -87,4 +88,15 @@ rm -rf MyKaliBox
 
 rm -rf transfer/others
 rm -rf transfer/powersploit
+rm -rf transfer/sudo-cve2019-18634
 
+cp workspace/transfer.sh transfer/powerup
+cp workspace/transfer.sh transfer/dirtycow
+cp workspace/transfer.sh transfer/print_nightmare
+cp workspace/transfer.sh transfer/ld_preload_privesc
+cp workspace/transfer.sh transfer/sudoPrivEsc-cve-2019-18634
+cp workspace/transfer.sh transfer/drupal7
+cp workspace/transfer.sh transfer/akagi
+cp workspace/transfer.sh transfer/linpeas
+cp workspace/transfer.sh transfer/spip_exploit/reverse_shell
+cp workspace/transfer.sh transfer/spip_exploit/injection
