@@ -49,7 +49,7 @@ cd ~
 
 cd transfer
 git clone https://github.com/saleemrashid/sudo-cve-2019-18634.git
-mv sudo-cve-2019-18634 sudoPrivEsc-cve-2019-18634
+mv sudo-cve-2019-18634 PrivEsc-cve-2019-18634-sudoersExploit
 cd sudoPrivEsc-cve-2019-18634
 gcc -o exploit.c compiled_exploit
 cd ~
