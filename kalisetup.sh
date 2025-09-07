@@ -70,8 +70,8 @@ cd ~
 mkdir workspace
 mkdir workspace/findings 
 
-mv MyKaliBox/script/* workspace/findings
-cd workspace/findings
+mv MyKaliBox/script/* workspace
+cd workspace
 sudo chmod +x *
 cd ~
 
@@ -83,15 +83,15 @@ rm -rf MyKaliBox
 # check wut tf this is first: rm -rf transfer/sudo-cve2019-18634
 
 ############# copy transfer.sh
-cp workspace/findings/transfer.sh transfer/powerup
-cp workspace/findings/transfer.sh transfer/dirtycow
-cp workspace/findings/transfer.sh transfer/print_nightmare
-cp workspace/findings/transfer.sh transfer/ld_preload_privesc
-cp workspace/findings/transfer.sh transfer/sudoPrivEsc-cve-2019-18634
-cp workspace/findings/transfer.sh transfer/drupal7
-cp workspace/findings/transfer.sh transfer/akagi
-cp workspace/findings/transfer.sh transfer/linpeas
-cp workspace/findings/transfer.sh transfer/spip_exploit/reverse_shell
-cp workspace/findings/transfer.sh transfer/spip_exploit/injection
-cp workspace/findings/transfer.sh transfer/php-reverseshell
-cp workspace/findings/transfer.sh transfer/
+cp workspace/transfer.sh transfer/powerup
+cp workspace/transfer.sh transfer/dirtycow
+cp workspace/transfer.sh transfer/print_nightmare
+cp workspace/transfer.sh transfer/ld_preload_privesc
+cp workspace/transfer.sh transfer/sudoPrivEsc-cve-2019-18634
+cp workspace/transfer.sh transfer/drupal7
+cp workspace/transfer.sh transfer/akagi
+cp workspace/transfer.sh transfer/linpeas
+cp workspace/transfer.sh transfer/spip_exploit/reverse_shell
+cp workspace/transfer.sh transfer/spip_exploit/injection
+cp workspace/transfer.sh transfer/php-reverseshell
+cp workspace/transfer.sh transfer/
