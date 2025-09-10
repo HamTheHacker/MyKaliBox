@@ -2,10 +2,18 @@
 
 sudo apt update
 sudo apt install gcc build-essential libc6-dev libcrypt-dev gcc-multilib -y
+sudo apt install subfinder -y
 sudo apt install kali-tools-web kali-tools-top10 kali-tools-wireless kali-tools-everything -y
 sudo apt install impacket-scripts ffuf wget -y
 sudo apt install ruby ruby-dev -y
 sudo gem install evil-winrm
+
+######## pimp my kali ##### commented to not execute
+# cd /
+# git clone https://github.com/Dewalt-arch/pimpmykali
+# cd pimpmykali
+# sudo ./pimpmykali.sh --auto
+
 
 ################## cloning main repo
 cd ~
