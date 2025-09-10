@@ -76,7 +76,8 @@ cd ~
 ################## workspace setup
 
 mkdir workspace
-mkdir workspace/findings 
+mkdir workspace/findings
+mkdir workspace/findings/web-osint
 
 mv MyKaliBox/script/* workspace
 cd workspace
