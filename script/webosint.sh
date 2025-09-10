@@ -9,7 +9,7 @@ RED="\033[1;31m"
 RESET="\033[0m"
 
 # Define directories
-base_dir="$domain"
+base_dir="findings/web-osint/$domain"
 info_path="$base_dir/info"
 subdomain_path="$base_dir/subdomains"
 screenshot_path="$base_dir/screenshots"
