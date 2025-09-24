@@ -72,6 +72,9 @@ pip3 install requests
 pip3 install bs4
 cd ~
 
+# Trevo spray for external pentesting on office 365 (Password Sprayer)
+pip install git+https://github.com/blacklanternsecurity/trevorproxy
+pip install git+https://github.com/blacklanternsecurity/trevorspray
 
 ################## workspace setup
 
