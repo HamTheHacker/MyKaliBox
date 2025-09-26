@@ -63,13 +63,20 @@ gcc -o exploit.c compiled_exploit
 cd ~
 
 mkdir transfer/drupal7
-cd transfer/Drupal7
+cd transfer/drupal7
 git clone https://github.com/pimps/CVE-2018-7600
 mv CVE-2018-7600/drupa7-CVE-2018-7600.py .
 mv drupa7-CVE-2018-7600.py drupal7.py
 rm -rf CVE-2018-7600
 pip3 install requests
 pip3 install bs4
+cd ~
+
+mkdir transfer/mfa_bypass_mail
+cd transfer/mfa_bypass_mail
+git clone https://github.com/dafthack/MailSniper.git
+mv MailSniper/* .
+rm -rf MailSniper
 cd ~
 
 # Trevo spray for external pentesting on office 365 (Password Sprayer)
