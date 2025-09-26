@@ -35,6 +35,15 @@ rm -rf 42f8629577db95782d5e4f609f437a54
 gcc -pthread c0w.c -o compiled_cow -lcrypt
 cd ~
 
+mkdir transfer/citrix_netscaler
+cd transfer/citrix_netscaler
+git clone https://github.com/trustedsec/cve-2019-19781.git
+mv cve-2019-19781/* .
+rm -rf cve-2019-19781
+pip3 install -r requirements.txt
+rm -rf LICENSE.txt
+cd ~
+
 mkdir transfer/windows_suggester
 cd transfer/windows_suggester
 git clone https://github.com/AonCyberLabs/Windows-Exploit-Suggester.git
